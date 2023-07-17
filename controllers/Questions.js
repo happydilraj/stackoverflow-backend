@@ -22,6 +22,16 @@ export const getAllQuestions = async(req,res) => {
     }
 }
 
+export const allQuesParticularUser = async(req,res) => {
+    const {userId} = req.body;
+    try {
+        const questionList = await Questions.find({userId});
+        res.status(200).json(questionList.length)
+    } catch (error) {
+        res.status(404).json({message: error});
+    }
+}
+
 export const DeleteQuestion = async (req,res)=> {
     const {id: _id} = req.params;
 
